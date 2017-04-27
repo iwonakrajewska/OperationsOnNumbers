@@ -1,5 +1,7 @@
 classes/
 bin/
+target/**/
+target/*.original
 .clover/
 .apt_generated/
 .settings/

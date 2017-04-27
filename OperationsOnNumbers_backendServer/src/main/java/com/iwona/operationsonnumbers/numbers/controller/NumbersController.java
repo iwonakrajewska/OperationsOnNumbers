@@ -32,6 +32,7 @@ public class NumbersController {
 	        SingleNumberResponse response = numbersService.addNumbers(request.getNumberText1(), request.getNumberText2());
 	        return ResponseEntity.status(HttpStatus.OK).body(response);
         }catch (Exception e) {
+			LOG.error("Problem in addition", e);
 			return serverErrorResponseHandler.prepareErrorResponse();
 		}
     }
@@ -43,6 +44,7 @@ public class NumbersController {
 	        SingleNumberResponse response = numbersService.subtractNumbers(request.getNumberText1(), request.getNumberText2());
 	        return ResponseEntity.status(HttpStatus.OK).body(response);
 	    }catch (Exception e) {
+			LOG.error("Problem in subtraction", e);
 			return serverErrorResponseHandler.prepareErrorResponse();
 		}
     }
@@ -54,6 +56,7 @@ public class NumbersController {
 	        SingleNumberResponse response = numbersService.multiplyNumbers(request.getNumberText1(), request.getNumberText2());
 	        return ResponseEntity.status(HttpStatus.OK).body(response);
 	    }catch (Exception e) {
+			LOG.error("Problem in multiplication", e);
 			return serverErrorResponseHandler.prepareErrorResponse();
 		}
     }
@@ -65,6 +68,7 @@ public class NumbersController {
 	        SingleNumberResponse response = numbersService.divideNumbers(request.getNumberText1(), request.getNumberText2());
 	        return ResponseEntity.status(HttpStatus.OK).body(response);
 	    }catch (Exception e) {
+			LOG.error("Problem in division", e);
 			return serverErrorResponseHandler.prepareErrorResponse();
 		}
     }
