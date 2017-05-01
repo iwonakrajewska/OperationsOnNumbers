@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
 
 import { Config } from '../shared/properties/config';
-import { LoginRequest } from './LoginRequest';
+import { LoginRequest } from './loginRequest'; 
 import { UtilService } from '../shared/utils/util.service';
 
 
