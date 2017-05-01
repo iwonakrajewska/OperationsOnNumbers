@@ -31,38 +31,38 @@ public class NumbersControllerTest {
 	public void testAddition() throws Exception {
 		this.mockMvc.perform(post("/addition").contentType(MediaType.APPLICATION_JSON).content(requestWithIntegers()))
 				.andDo(MockMvcResultHandlers.print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.numberText").value("11")).andExpect(jsonPath("$.messages").isEmpty());
+				.andExpect(jsonPath("$.numberText").value("11")).andExpect(jsonPath("$.errorMessages").isEmpty());
 	}
 
 	@Test
 	public void testAdditionDecimal() throws Exception {
 		this.mockMvc.perform(post("/addition").contentType(MediaType.APPLICATION_JSON).content(requestWithDecimal()))
 				.andDo(MockMvcResultHandlers.print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.numberText").value("3.1")).andExpect(jsonPath("$.messages").isEmpty());
+				.andExpect(jsonPath("$.numberText").value("3.1")).andExpect(jsonPath("$.errorMessages").isEmpty());
 	}
 
 	@Test
 	public void testAdditionZero() throws Exception {
 		this.mockMvc.perform(post("/addition").contentType(MediaType.APPLICATION_JSON).content(requestWithZero()))
 				.andDo(MockMvcResultHandlers.print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.numberText").value("-11.0")).andExpect(jsonPath("$.messages").isEmpty());
+				.andExpect(jsonPath("$.numberText").value("-11.0")).andExpect(jsonPath("$.errorMessages").isEmpty());
 	}
 
 	@Test
 	public void testAdditionEmpty() throws Exception {
 		this.mockMvc.perform(post("/addition").contentType(MediaType.APPLICATION_JSON).content(requestWithEmpty()))
 				.andDo(MockMvcResultHandlers.print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.numberText").isEmpty()).andExpect(jsonPath("$.messages").isArray())
-				.andExpect(jsonPath("$.messages").value("Number1: incorrect numeric value"));
+				.andExpect(jsonPath("$.numberText").isEmpty()).andExpect(jsonPath("$.errorMessages").isArray())
+				.andExpect(jsonPath("$.errorMessages").value("Number1: incorrect numeric value"));
 	}
 
 	@Test
 	public void testAdditionBothEmpty() throws Exception {
 		this.mockMvc.perform(post("/addition").contentType(MediaType.APPLICATION_JSON).content(requestWithBothEmpty()))
 				.andDo(MockMvcResultHandlers.print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.numberText").isEmpty()).andExpect(jsonPath("$.messages").isArray())
-				.andExpect(jsonPath("$.messages[0]").value("Number1: incorrect numeric value"))
-				.andExpect(jsonPath("$.messages[1]").value("Number2: incorrect numeric value"));
+				.andExpect(jsonPath("$.numberText").isEmpty()).andExpect(jsonPath("$.errorMessages").isArray())
+				.andExpect(jsonPath("$.errorMessages[0]").value("Number1: incorrect numeric value"))
+				.andExpect(jsonPath("$.errorMessages[1]").value("Number2: incorrect numeric value"));
 	}
 
 	@Test
@@ -70,30 +70,30 @@ public class NumbersControllerTest {
 		this.mockMvc
 				.perform(post("/subtraction").contentType(MediaType.APPLICATION_JSON).content(requestWithIntegers()))
 				.andDo(MockMvcResultHandlers.print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.numberText").value("3")).andExpect(jsonPath("$.messages").isEmpty());
+				.andExpect(jsonPath("$.numberText").value("3")).andExpect(jsonPath("$.errorMessages").isEmpty());
 	}
 
 	@Test
 	public void testSubtractionDecimal() throws Exception {
 		this.mockMvc.perform(post("/subtraction").contentType(MediaType.APPLICATION_JSON).content(requestWithDecimal()))
 				.andDo(MockMvcResultHandlers.print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.numberText").value("-11.1")).andExpect(jsonPath("$.messages").isEmpty());
+				.andExpect(jsonPath("$.numberText").value("-11.1")).andExpect(jsonPath("$.errorMessages").isEmpty());
 	}
 
 	@Test
 	public void testSubtractionZero() throws Exception {
 		this.mockMvc.perform(post("/subtraction").contentType(MediaType.APPLICATION_JSON).content(requestWithZero()))
 				.andDo(MockMvcResultHandlers.print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.numberText").value("-11.0")).andExpect(jsonPath("$.messages").isArray())
-				.andExpect(jsonPath("$.messages").isEmpty());
+				.andExpect(jsonPath("$.numberText").value("-11.0")).andExpect(jsonPath("$.errorMessages").isArray())
+				.andExpect(jsonPath("$.errorMessages").isEmpty());
 	}
 
 	@Test
 	public void testSubtractionEmpty() throws Exception {
 		this.mockMvc.perform(post("/subtraction").contentType(MediaType.APPLICATION_JSON).content(requestWithEmpty()))
 				.andDo(MockMvcResultHandlers.print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.numberText").isEmpty()).andExpect(jsonPath("$.messages").isArray())
-				.andExpect(jsonPath("$.messages").value("Number1: incorrect numeric value"));
+				.andExpect(jsonPath("$.numberText").isEmpty()).andExpect(jsonPath("$.errorMessages").isArray())
+				.andExpect(jsonPath("$.errorMessages").value("Number1: incorrect numeric value"));
 	}
 
 	@Test
@@ -101,9 +101,9 @@ public class NumbersControllerTest {
 		this.mockMvc
 				.perform(post("/subtraction").contentType(MediaType.APPLICATION_JSON).content(requestWithBothEmpty()))
 				.andDo(MockMvcResultHandlers.print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.numberText").isEmpty()).andExpect(jsonPath("$.messages").isArray())
-				.andExpect(jsonPath("$.messages[0]").value("Number1: incorrect numeric value"))
-				.andExpect(jsonPath("$.messages[1]").value("Number2: incorrect numeric value"));
+				.andExpect(jsonPath("$.numberText").isEmpty()).andExpect(jsonPath("$.errorMessages").isArray())
+				.andExpect(jsonPath("$.errorMessages[0]").value("Number1: incorrect numeric value"))
+				.andExpect(jsonPath("$.errorMessages[1]").value("Number2: incorrect numeric value"));
 	}
 
 	@Test
@@ -111,7 +111,7 @@ public class NumbersControllerTest {
 		this.mockMvc
 				.perform(post("/multiplication").contentType(MediaType.APPLICATION_JSON).content(requestWithIntegers()))
 				.andDo(MockMvcResultHandlers.print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.numberText").value("28")).andExpect(jsonPath("$.messages").isEmpty());
+				.andExpect(jsonPath("$.numberText").value("28")).andExpect(jsonPath("$.errorMessages").isEmpty());
 	}
 
 	@Test
@@ -119,15 +119,15 @@ public class NumbersControllerTest {
 		this.mockMvc
 				.perform(post("/multiplication").contentType(MediaType.APPLICATION_JSON).content(requestWithDecimal()))
 				.andDo(MockMvcResultHandlers.print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.numberText").value("-28.4")).andExpect(jsonPath("$.messages").isEmpty());
+				.andExpect(jsonPath("$.numberText").value("-28.4")).andExpect(jsonPath("$.errorMessages").isEmpty());
 	}
 
 	@Test
 	public void testMultiplicationZero() throws Exception {
 		this.mockMvc.perform(post("/multiplication").contentType(MediaType.APPLICATION_JSON).content(requestWithZero()))
 				.andDo(MockMvcResultHandlers.print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.numberText").value("0.0")).andExpect(jsonPath("$.messages").isArray())
-				.andExpect(jsonPath("$.messages").isEmpty());
+				.andExpect(jsonPath("$.numberText").value("0.0")).andExpect(jsonPath("$.errorMessages").isArray())
+				.andExpect(jsonPath("$.errorMessages").isEmpty());
 	}
 
 	@Test
@@ -135,9 +135,9 @@ public class NumbersControllerTest {
 		this.mockMvc
 				.perform(post("/multiplication").contentType(MediaType.APPLICATION_JSON).content(requestWithEmpty()))
 				.andDo(MockMvcResultHandlers.print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.numberText").isEmpty()).andExpect(jsonPath("$.messages").isArray())
-				.andExpect(jsonPath("$.messages", hasSize(1)))
-				.andExpect(jsonPath("$.messages").value("Number1: incorrect numeric value"));
+				.andExpect(jsonPath("$.numberText").isEmpty()).andExpect(jsonPath("$.errorMessages").isArray())
+				.andExpect(jsonPath("$.errorMessages", hasSize(1)))
+				.andExpect(jsonPath("$.errorMessages").value("Number1: incorrect numeric value"));
 	}
 
 	@Test
@@ -146,53 +146,53 @@ public class NumbersControllerTest {
 				.perform(
 						post("/multiplication").contentType(MediaType.APPLICATION_JSON).content(requestWithBothEmpty()))
 				.andDo(MockMvcResultHandlers.print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.numberText").isEmpty()).andExpect(jsonPath("$.messages").isArray())
-				.andExpect(jsonPath("$.messages", hasSize(2)))
-				.andExpect(jsonPath("$.messages[0]").value("Number1: incorrect numeric value"))
-				.andExpect(jsonPath("$.messages[1]").value("Number2: incorrect numeric value"));
+				.andExpect(jsonPath("$.numberText").isEmpty()).andExpect(jsonPath("$.errorMessages").isArray())
+				.andExpect(jsonPath("$.errorMessages", hasSize(2)))
+				.andExpect(jsonPath("$.errorMessages[0]").value("Number1: incorrect numeric value"))
+				.andExpect(jsonPath("$.errorMessages[1]").value("Number2: incorrect numeric value"));
 	}
 
 	@Test
 	public void testDivisionInteger() throws Exception {
 		this.mockMvc.perform(post("/division").contentType(MediaType.APPLICATION_JSON).content(requestWithIntegers()))
 				.andDo(MockMvcResultHandlers.print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.numberText").value("1.75")).andExpect(jsonPath("$.messages").isEmpty());
+				.andExpect(jsonPath("$.numberText").value("1.75")).andExpect(jsonPath("$.errorMessages").isEmpty());
 	}
 
 	@Test
 	public void testDivisionDecimal() throws Exception {
 		this.mockMvc.perform(post("/division").contentType(MediaType.APPLICATION_JSON).content(requestWithDecimal()))
 				.andDo(MockMvcResultHandlers.print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.numberText").value("-0.56")).andExpect(jsonPath("$.messages").isEmpty());
+				.andExpect(jsonPath("$.numberText").value("-0.56")).andExpect(jsonPath("$.errorMessages").isEmpty());
 	}
 
 	@Test
 	public void testDivisionZero() throws Exception {
 		this.mockMvc.perform(post("/division").contentType(MediaType.APPLICATION_JSON).content(requestWithZero()))
 				.andDo(MockMvcResultHandlers.print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.numberText").isEmpty()).andExpect(jsonPath("$.messages").isArray())
-				.andExpect(jsonPath("$.messages", hasSize(1)))
-				.andExpect(jsonPath("$.messages[0]").value("Number2: value 0 not allowed"));
+				.andExpect(jsonPath("$.numberText").isEmpty()).andExpect(jsonPath("$.errorMessages").isArray())
+				.andExpect(jsonPath("$.errorMessages", hasSize(1)))
+				.andExpect(jsonPath("$.errorMessages[0]").value("Number2: value 0 not allowed"));
 	}
 
 	@Test
 	public void testDivisionEmpty() throws Exception {
 		this.mockMvc.perform(post("/division").contentType(MediaType.APPLICATION_JSON).content(requestWithEmpty()))
 				.andDo(MockMvcResultHandlers.print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.numberText").isEmpty()).andExpect(jsonPath("$.messages").isArray())
-				.andExpect(jsonPath("$.messages", hasSize(2)))
-				.andExpect(jsonPath("$.messages[0]").value("Number1: incorrect numeric value"))
-				.andExpect(jsonPath("$.messages[1]").value("Number2: value 0 not allowed"));
+				.andExpect(jsonPath("$.numberText").isEmpty()).andExpect(jsonPath("$.errorMessages").isArray())
+				.andExpect(jsonPath("$.errorMessages", hasSize(2)))
+				.andExpect(jsonPath("$.errorMessages[0]").value("Number1: incorrect numeric value"))
+				.andExpect(jsonPath("$.errorMessages[1]").value("Number2: value 0 not allowed"));
 	}
 
 	@Test
 	public void testDivisionBothEmpty() throws Exception {
 		this.mockMvc.perform(post("/division").contentType(MediaType.APPLICATION_JSON).content(requestWithBothEmpty()))
 				.andDo(MockMvcResultHandlers.print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.numberText").isEmpty()).andExpect(jsonPath("$.messages").isArray())
-				.andExpect(jsonPath("$.messages", hasSize(2)))
-				.andExpect(jsonPath("$.messages[0]").value("Number1: incorrect numeric value"))
-				.andExpect(jsonPath("$.messages[1]").value("Number2: incorrect numeric value"));
+				.andExpect(jsonPath("$.numberText").isEmpty()).andExpect(jsonPath("$.errorMessages").isArray())
+				.andExpect(jsonPath("$.errorMessages", hasSize(2)))
+				.andExpect(jsonPath("$.errorMessages[0]").value("Number1: incorrect numeric value"))
+				.andExpect(jsonPath("$.errorMessages[1]").value("Number2: incorrect numeric value"));
 	}
 
 	private String requestWithIntegers() {

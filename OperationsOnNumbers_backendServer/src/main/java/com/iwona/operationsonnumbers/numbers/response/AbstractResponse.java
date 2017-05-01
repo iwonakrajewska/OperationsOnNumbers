@@ -5,22 +5,22 @@ import java.util.List;
 
 public class AbstractResponse {
 
-    List<String> messages = new ArrayList<>();
+	List<String> errorMessages = new ArrayList<>();
 
-    public List<String> getMessages() {
-        return messages;
-    }
+	public List<String> getErrorMessages() {
+		return errorMessages;
+	}
 
-    public void setMessages(final List<String> messages) {
-        this.messages = messages;
-    }
+	public void setErrorMessages(List<String> errorMessages) {
+		this.errorMessages = errorMessages;
+	}
 
-    public void addMessage(final String message) {
-        messages.add(message);
-    }
+	public void addMessage(final String message) {
+		errorMessages.add(message);
+	}
 
-    public boolean hasMessages() {
-        return messages.size() > 0;
-    }
+	public boolean hasMessages() {
+		return errorMessages.size() > 0;
+	}
 
 }
