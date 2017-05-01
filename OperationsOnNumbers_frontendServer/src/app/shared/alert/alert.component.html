@@ -1,0 +1,18 @@
+<div *ngIf="message" [ngClass]="{ 'alert': message, 
+'alert-success': message.type === 'success',
+'alert-info': message.type === 'info',
+'alert-warning': message.type === 'warning',
+ 'alert-danger': message.type === 'error' }">{{message.text}}</div>
+
+
+<div *ngIf="messageList && messageList.length" [ngClass]="{ 'alert': messageList, 
+    'alert-success': typeList === 'success',
+    'alert-info': typeList === 'info',
+    'alert-warning': typeList === 'warning',
+    'alert-danger': typeList === 'error' }">
+    <table>
+        <tr *ngFor="let messageText of messageList">
+            <td>{{messageText}}</td>
+        </tr>
+    </table>
+</div>
