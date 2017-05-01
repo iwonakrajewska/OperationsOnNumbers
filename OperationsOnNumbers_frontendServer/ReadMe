@@ -1,10 +1,13 @@
 Operations on numbers - frontend server
 
 1.
+Please copy all folders from node_modules2 to node_modules (github limitations)
+Eventually those packages can by loaded by npm install
+
+2.
 to run frontend server
 npm start
 
-2.
 to check if server is started check page
 http://localhost:4200
 
