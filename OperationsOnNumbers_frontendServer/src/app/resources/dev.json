@@ -1,5 +1,0 @@
-{
-        "apiUrl": "/src/",
-        "debugging": "true",
-        "backendServerUrl": "http://localhost:8080/rest/"
-}

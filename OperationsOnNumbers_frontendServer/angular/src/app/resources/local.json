@@ -1,0 +1,5 @@
+{
+        "apiUrl": "/src/",
+        "debugging": "true",
+        "backendServerUrl": "http://localhost:3000/MerchantServices/rest/"
+}
